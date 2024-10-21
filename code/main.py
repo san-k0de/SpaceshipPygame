@@ -17,7 +17,11 @@ surf.fill("orange")
 x = 100
 
 # Import image
+# Player
 player_surf = pygame.image.load(join("images", "player.png")).convert_alpha() # loading image from path; using convert() as image has no transparent pixels
+player_rect = player_surf.get_frect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
+
+# Stars
 star_surf = pygame.image.load(join("images", "star.png")).convert_alpha()
 star_positions = [(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)) for i in range(20)]
 
@@ -30,10 +34,10 @@ while running:
 
     # Draw the game
     displaySurface.fill("cadetblue3")
-    x += 0.1
     for pos in star_positions:
         displaySurface.blit(star_surf, pos)
-    displaySurface.blit(player_surf, (x, 150)) # blit is block image transfer
+    player_rect.left += 0.2
+    displaySurface.blit(player_surf, player_rect) # blit is block image transfer
     pygame.display.update()
 
 # Close the game   
